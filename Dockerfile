@@ -39,4 +39,6 @@ RUN set -x \
 
 RUN set -x \
  && curl https://install.meteor.com/ | sh
+
+RUN set -x \
  && meteor --version
