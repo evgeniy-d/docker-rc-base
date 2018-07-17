@@ -40,6 +40,8 @@ RUN set -x \
 RUN set -x \
  && curl "https://install.meteor.com/" | sh
 
-USER rocketchat
+RUN useradd -m -G users -s /bin/bash meteor
+
+USER meteor
 
 RUN cd /tmp && meteor --version
