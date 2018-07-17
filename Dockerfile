@@ -38,5 +38,8 @@ RUN set -x \
  && useradd -u 99999 -r -g rocketchat rocketchat
 
 RUN set -x \
- && curl "https://install.meteor.com/" | sh \
- && meteor --version
+ && curl "https://install.meteor.com/" | sh
+
+USER rocketchat
+
+RUN cd /tmp && meteor --version
