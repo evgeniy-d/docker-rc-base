@@ -25,7 +25,7 @@ ENV NODE_VERSION 8.11.3
 ENV NODE_ENV production
 
 RUN set -x \
- && apt-get update && apt-get install -y curl ca-certificates imagemagick --no-install-recommends \
+ && apt-get update && apt-get install -y curl ca-certificates imagemagick git bzip2 python2.7 --no-install-recommends \
  && rm -rf /var/lib/apt/lists/* \
  && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz" \
  && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
@@ -42,6 +42,12 @@ RUN set -x \
 
 RUN useradd -m -G users -s /bin/bash meteor
 
+RUN mkdir -p /app \
+ && mkdir -p /app/source \
+ && mkdir -p /app/server \
+ && mkdir -p /app/build
+
 USER meteor
 
 RUN cd /tmp && meteor --version
+
